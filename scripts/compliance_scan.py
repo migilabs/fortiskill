@@ -921,7 +921,7 @@ def self_test():
         ("denylist.term", j("Kunde: Acme ", "Muster AG")),
     ]
     clean = [
-        j("ops@example.com, git@github.com:FreddyMcFett/fortiskill.git, noreply", "@anthropic.com, icon@2x.png"),
+        j("ops@example.com, git@github.com:migilabs/fortiskill.git, noreply", "@anthropic.com, icon@2x.png"),
         'devid="FGVMEVDEMO0000001" devname="DEMO-HQ-FGT-01" logver=0800000167 eventtime=1785568442847113221',
         "set password ENC <encrypted>\n    set psksecret <your-psk>\n    set password fortinet",
         'ansible_password: "{{ vault_fgt_token }}"\ntoken    = var.fortigate_api_token\napi_key=args.api_key',

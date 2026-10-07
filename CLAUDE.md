@@ -13,7 +13,7 @@ This repo is a Claude plugin marketplace (`.claude-plugin/marketplace.json`) tha
 ships one plugin, `fortiskill`, whose root is the repo root
 (`.claude-plugin/plugin.json`). Every folder under `skills/` with a `SKILL.md` is
 auto-discovered as a skill of that plugin. Team members install it once
-(`/plugin marketplace add FreddyMcFett/fortiskill`, then
+(`/plugin marketplace add migilabs/fortiskill`, then
 `/plugin install fortiskill@fortiskill`, or Customize → Plugins on
 claude.ai/Desktop) and get updates via auto-update / sync.
 

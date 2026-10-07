@@ -12,14 +12,14 @@ FortiGate, FortiOS usw. sind Marken der Fortinet, Inc.
 ### Claude Code (CLI, VS Code, JetBrains)
 
 ```text
-/plugin marketplace add FreddyMcFett/fortiskill
+/plugin marketplace add migilabs/fortiskill
 /plugin install fortiskill@fortiskill
 ```
 
 oder im Terminal:
 
 ```bash
-claude plugin marketplace add FreddyMcFett/fortiskill
+claude plugin marketplace add migilabs/fortiskill
 claude plugin install fortiskill@fortiskill
 ```
 
@@ -31,7 +31,7 @@ Danach zieht Claude Code beim Start die neueste Version. Manuell geht es jederze
 
 ### claude.ai und Claude Desktop
 
-**Customize → Plugins → Add → Add marketplace** → `FreddyMcFett/fortiskill`
+**Customize → Plugins → Add → Add marketplace** → `migilabs/fortiskill`
 eingeben, dann das Plugin `fortiskill` installieren und auf der Marketplace-Seite
 **Sync automatically** einschalten.
 

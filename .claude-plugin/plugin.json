@@ -3,9 +3,9 @@
   "displayName": "FortiSkill - Fortinet Presales Skills",
   "description": "Fortinet presales engineering skills for the DACH team: engineering/architecture (fortinet-engineer), BOM and SFDC quote workbooks (fortinet-bom), Fortinet-branded PowerPoint decks (fortinet-pptx), Community KB articles in KCS style (fortinet-kb-article) and synthetic FortiAnalyzer demo logs (faz-log-forge).",
   "author": {
-    "name": "FreddyMcFett"
+    "name": "migilabs"
   },
-  "homepage": "https://github.com/FreddyMcFett/fortiskill",
-  "repository": "https://github.com/FreddyMcFett/fortiskill",
+  "homepage": "https://github.com/migilabs/fortiskill",
+  "repository": "https://github.com/migilabs/fortiskill",
   "keywords": ["fortinet", "fortigate", "presales", "bom", "pptx", "fortianalyzer", "kb"]
 }
