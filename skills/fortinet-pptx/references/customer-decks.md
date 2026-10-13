@@ -123,8 +123,8 @@ Deliver it with the deck, in the chat reply:
 
 ### How it goes into the deck
 
-- Pain points are hypotheses and the slide says so: the subtitle or a white band such as
-  "Unsere Hypothesen aus öffentlichen Quellen, heute gemeinsam validieren".
+- Pain points are hypotheses and the slide says so in the subtitle, for example
+  "Unsere Hypothesen aus öffentlichen Quellen, heute gemeinsam validieren" (no band at the bottom).
 - Each pain point tile carries the pain point as title and the observable signal plus the question in
   the body (`icon_tile` 3 x 2), or use a chip table with the columns pain point, what we see,
   question to you.
@@ -145,7 +145,7 @@ Deliver it with the deck, in the chat reply:
 3. Ziel des Termins: three gradient header cards (understand, align, agree next steps) or numbered cards.
 4. Company snapshot: KPI gradient tiles (employees, sites, countries, industry) plus icon tiles of key
    developments, all verified.
-5. Pain point hypotheses: icon tiles 3 x 2 or chip table, white band "Hypothesen, heute validieren".
+5. Pain point hypotheses: icon tiles 3 x 2 or chip table, subtitle "Hypothesen, heute validieren".
 6. Discovery questions: gradient panel with white rows (pattern 5) or numbered step rows, grouped by
    topic, at most eight questions on the slide (the full question bank lives in the presenter's
    notes, see `fortinet-engineer` presales playbook).
@@ -167,8 +167,8 @@ Deliver it with the deck, in the chat reply:
 - Detail slides (architecture, scope table, PoC) follow for the recommended option only. If an
   optional variant needs more explanation, add one "Optionale Varianten" page (`option_split`) that
   states per variant what changes compared with the recommendation.
-- The band under the options states the recommendation and its main reason:
-  "Empfehlung Option A: ..." with the lead words in `ON_DARK[color]`.
+- The subtitle of the options slide states the recommendation and its main reason:
+  "Empfehlung Option A: ...". No takeaway band under the options.
 - Facts rows compare like with like: the same labels in the same order on every option (sites,
   quantities, operating model, effort, migration risk, time to value). Quantities and qualitative
   values only; prices only when the user asks for them.
@@ -181,7 +181,7 @@ Deliver it with the deck, in the chat reply:
 
 | Options | Layout |
 |---|---|
-| 2 or 3 | `option_cards` (columns). Card height 3.6 to 3.9 in, two to four bullets, up to four facts rows |
+| 2 or 3 | `option_cards` (columns). Card height 3.9 to 4.3 in, two to four bullets, up to four facts rows |
 | 4 | `option_cards` with short texts (title up to about 18 characters, sub line up to about 30, three bullets of one line), or `option_split` |
 | 5 or more, or a recommended option with much more content | `option_split`: recommended card left (60 %), compact OPTIONAL rows right |
 

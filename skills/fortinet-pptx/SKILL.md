@@ -18,7 +18,7 @@ design language of Fortinet's current corporate decks:
 - a **white inner panel** inside the gradient card that carries the bullets,
 - **icon badges**: white circles with an accent ring and a soft shadow, sitting on the top edge of a card,
 - **soft drop shadows** instead of grey 1 pt borders on white cards,
-- a **dark gradient pill** as the takeaway band, blue gradient table headers, gradient chevrons,
+- blue gradient table headers, gradient chevrons,
 - architecture diagrams built from gradient boxes with the coloured icon in a white badge.
 
 Everything is built with the `ModernDeck` class (ftnt_modern.py) on top of the classic helper
@@ -64,14 +64,16 @@ one page. On every title slide the presenter line reads `Vorname Name - Systems 
   substitutes, no screenshots of icons, no recolouring of the SVGs. On gradient fills the coloured
   icon goes into a white badge (`wbadge`, `badge`); the `-white` line variants are too faint on
   gradients and are only used on flat dark surfaces.
+- No takeaway band: no full-width dark (or white) pill or bar with a catch line at the bottom of a
+  content slide. The message of the slide is the title, the explanation the subtitle. `lint` flags
+  such bars; remove them when editing older decks that still have one.
 - Arial only. Colours only from the palette, the tints and the gradient stops below.
 - Gradients: two-stop linear only, from an accent to its own darker stop (`DARK[accent]`), never two
   different accents in one gradient, never rainbow or radial. Angle 70 degrees (`ang=4200000`) for
-  cards and boxes, 0 degrees for bands, pills, chevrons and arrows, 90 degrees for tint panels and
+  cards and boxes, 0 degrees for pills, chevrons and arrows, 90 degrees for tint panels and
   thin bars. The helpers do this; do not hand-roll gradients.
 - Shadows: only the soft drop shadows of the helpers (card 0.25 in blur, 0.08 in down, 22 % black;
-  badge 0.17 in / 0.04 in / 30 %; band 0.22 in / 0.07 in / 25 %; table row labels 0.08 in / 0.02 in /
-  18 %). No 3D, bevel, glow, reflection or outer glow.
+  badge 0.17 in / 0.04 in / 30 %; table row labels 0.08 in / 0.02 in / 18 %). No 3D, bevel, glow, reflection or outer glow.
 - Punctuation: no em dashes, no en dashes as separators, no middle dots. Use commas, colons,
   slashes, "to" / "bis" for ranges and a spaced hyphen only if nothing else works (and in the
   presenter line of the title slide, where it is required). English decks use
@@ -95,7 +97,7 @@ one page. On every title slide the presenter line reads `Vorname Name - Systems 
 - Solution or offer decks with several options: exactly one option is recommended (ask the user when
   there is no basis to choose), shown with `option_cards` or `option_split` on one page: the
   recommended option as the raised accent card with the `EMPFOHLEN` / `RECOMMENDED` pill, the others as
-  white cards marked `OPTIONAL`, the band states the recommendation and its reason. Detail slides
+  white cards marked `OPTIONAL`, the subtitle states the recommendation and its reason. Detail slides
   follow for the recommended option only.
 - Fortinet product claims are verified against docs.fortinet.com (and the ordering guides for
   licensing) before they go on a slide.
@@ -180,27 +182,29 @@ Slide 12192000 x 6858000 EMU (13.333 x 7.5 in). Content column from `LEFT = 4480
 of at most about 90 characters, so it stays on one line). Nothing goes below `BOTTOM = 6126480`;
 the footnote line at `6437376` stays empty unless sources were explicitly requested. Gaps between
 cards 182880 (0.2 in), between table chips 54864 / 73152. Corner radii in EMU: gradient cards
-`ModernDeck.CARD_R = 164592`, tiles 91440, chips 73152, table cells 54864; bands and pills are
+`ModernDeck.CARD_R = 164592`, tiles 91440, chips 73152, table cells 54864; pills are
 fully rounded (radius = height / 2). The optional step tracker sits top right at y 329184, right
 edge 11859768; with a four-step tracker the title must stay under about 40 characters, with five
 steps under about 36.
 
 A typical content slide reads top to bottom: title (28 pt bold), optional subtitle (18 pt grey), one
-row of gradient cards or one diagram, optionally a row of white tiles, and a full-width dark
-gradient pill band at the bottom that states the one message of the slide. Architecture slides may
-replace the band with a legend row. The slide is full but never crowded: three to five columns,
-two to three rows, one band.
+row of gradient cards or one diagram, optionally a row of white tiles. The one message of the slide is in the title (and
+explained in the subtitle), never in a separate bar: **no takeaway band, no dark or white
+full-width pill with a catch line at the bottom of the slide.** Architecture slides may end with a
+legend row. The cards use the height the band used to take (pattern heights below already include
+it), so no empty strip is left above the footer. The slide is full but never crowded: three to five
+columns, two to three rows.
 
 ### Type scale (Arial, sizes in pt)
 
 | Element | Size and weight | Colour |
 |---|---|---|
 | Slide title / subtitle | 28 bold / 18 regular (layout defaults) | black / 7F7F7F |
-| Gradient card title, band statement | 14 bold | white (INK on yellow) |
+| Gradient card title | 14 bold | white (INK on yellow) |
 | Question / sub line on a gradient card | 11.5 regular | `TINT[accent]` (INK on yellow) |
 | KPI number on a gradient tile | 26 bold | white, label 10 in `TINT[accent]` |
 | Tile title, box title in a diagram | 12.5 to 13 bold / 10.5 bold | black on white, white on gradient |
-| Chevron step name, band lead sentence | 12.5 bold | white |
+| Chevron step name | 12.5 bold | white |
 | Bullets in the white inner panel | 10.5 to 12 regular | black, square bullet in the accent |
 | Body in tiles, table header | 10 to 10.5 regular / 10.5 bold | 464646 / white |
 | Secondary text, table cells, diagram sub lines | 8.5 to 9.5 regular | 464646, tint text or `TINT[accent]` on gradient |
@@ -220,7 +224,7 @@ Bullets are the small square `▪` (U+25AA) in the card's accent colour, `marL 1
 | Tints (zone panels, value chips, note boxes) | red `F8D4D2`, blue `D6E5F9`, purple `E9E0F5`, yellow `FFF1CC`, teal `D5F5F6`, green `D8EFE5`; as panels they run top to bottom into `LIGHT_END` (a lighter tint) |
 | Text on tints | red `DA291C` bold, blue `1F5FB0`, purple `6B46A8`, yellow `7A5A00`, teal `0E7C82`, green `2A8C62`, neutral `464646` |
 | Text on gradients | white titles, `TINT[accent]` sub lines; on yellow always INK |
-| Accent text on the dark band | red `FF6A5E`, blue `7FB2F5`, green `6FD3A8`, purple `C9B3F0`, teal `7FE3E8`, yellow `FFD35C` |
+| Accent text on dark surfaces (quote panel, dark panel) | red `FF6A5E`, blue `7FB2F5`, green `6FD3A8`, purple `C9B3F0`, teal `7FE3E8`, yellow `FFD35C` |
 
 Surface rules (the helpers apply them automatically through `ModernDeck.rounded`):
 
@@ -244,9 +248,9 @@ text; grey = underlay and neutral.
 1. **Gradient header cards**, 3 or 4 across (`header_card` with `icon`): gradient card, icon badge
    centred on the top edge (badge diameter = 1.3 x `icon_size`, capped at 1.3 in), white 14 pt
    title, optional question line in `TINT[accent]`, white inner panel with accent bullets. Card
-   height 3.7 to 4.2 in. Vertical budget with `icon_size` 0.8 to 0.9 in: the white panel starts
+   height 4.0 to 4.5 in. Vertical budget with `icon_size` 0.8 to 0.9 in: the white panel starts
    about 2.1 in below the card's y; keep bullets to 3 or 4 (2 lines each at most). Use for
-   principles, pillars, options, product blocks. A band underneath.
+   principles, pillars, options, product blocks.
 2. **Gradient list panels** (`header_card` without icon, `body=None`): gradient card with a white
    title band and a white inner panel starting 0.48 in below the top; draw your own rows inside
    from 0.55 in (country chip, name, proportional bar, label). Nine rows of 0.26 in with 0.025 in
@@ -272,9 +276,9 @@ text; grey = underlay and neutral.
 10. **Quote panel** (`quote_panel`): dark gradient panel, red 72 pt quote mark, white 16 pt quote.
 11. **Accent tiles** (`accent_tile`): white shadowed tile with an inset gradient pill bar on the
     left, 11.5 pt bold title, 9.5 pt grey text. Four across for rules, principles, constraints.
-12. **Takeaway band** (`band`): full-width dark gradient pill with shadow, white 12.5 to 14 pt text
-    and `ON_DARK` coloured lead words; `dark=False` gives a white pill with shadow (use it for
-    "not in scope" statements with a red lead word). One per slide, height 0.55 to 0.75 in.
+12. No takeaway band: the house style has no full-width bar with a catch line (neither dark nor
+    white). The message goes into the title and subtitle; "not in scope" statements go into a white
+    note box (pattern 17) or the speaker notes.
 13. **Numbered cards with arrows** (`numbered_card` + `arrow`): white shadowed cards, gradient number
     circle, upper-case kicker in the accent, 14 pt title, icon badge ringed in the accent, centred
     11 pt grey text, gradient red arrows between cards. Keep `icon_size` at 0.7 to 0.8 in for a
@@ -288,13 +292,13 @@ text; grey = underlay and neutral.
     external destinations. Draw all lines first, then the boxes, and check that no vertical line
     runs behind a box it does not belong to (compare the line x with every box span in that row).
     Solid 2.25 pt lines for overlays, dashed purple for SASE private access, a legend row with line
-    samples at the bottom instead of a band.
+    samples at the bottom.
 15. **Site or device blueprint**: destinations on top (white boxes with accent border), underlay
     chips (grey gradient), the device as a gradient box with a white badge and the key specs,
     LAN box with icons at the bottom, an icon-tile stack on the right with the four key functions.
 16. **Timeline / Gantt**: label column (3.5 in) plus weekly columns; gradient phase chevrons above
     the weeks in the tracker colours, dark gradient week header chips, WHITE cells, gradient bars
-    with short 8.5 pt labels, grey dots for recurring meetings, one band with the start condition.
+    with short 8.5 pt labels, grey dots for recurring meetings, the start condition in the subtitle.
 17. **Scope table for offers**: chip table "Baustein / Komponente / Menge / Services", quantities as
     tinted chips, then two note boxes: optional items (yellow tint) and "not included" (white).
 18. Classic compositions still valid with the modern primitives: phase columns, zone or level rows
@@ -309,23 +313,23 @@ text; grey = underlay and neutral.
     white inner panel with accent bullets. The other options are white shadowed cards with a grey
     `OPTIONAL` pill and the kicker beside it, 14 pt title, grey bullets. Facts rows (label left, bold
     value right) sit at the bottom of every card and line up across the cards. Start the cards at
-    `top + 0.2 in` (room for the pill), height 3.6 to 3.9 in, then the band with the recommendation.
+    `top + 0.2 in` (room for the pill), height 3.9 to 4.3 in; the subtitle states the recommendation.
 21. **Recommendation plus optional variants** (`option_split`): the recommended option card on the
     left (60 %), the optional variants stacked as compact white rows on the right (grey `OPTIONAL`
     pill, kicker, 12 pt title, one line on what changes compared with the recommendation, icon right).
     For four or more options or a recommended option with more content.
 22. **Pain point hypotheses** (discovery decks): `icon_tile` 3 x 2, title = pain point, body = the
     observable signal and the question to validate it; or a chip table "Herausforderung / Was wir
-    sehen / Frage an Sie". A white band (`band(dark=False)`) states that these are hypotheses from
-    public sources, to be validated in the meeting.
+    sehen / Frage an Sie". The subtitle states that these are hypotheses from public sources, to be
+    validated in the meeting.
 
 ### Storyline conventions
 
 Title Slide Dark, Agenda (5 to 7 lines), then per section a Section Header (alternate 1 and 2) and 2
 to 6 content slides, a roadmap or PoC plan, next steps (numbered cards), Closing Slide Dark.
 Customer decks run 20 to 26 slides; a follow-up 8 to 12. Titles are sentence case and carry the
-message, the subtitle carries the explanation. Each content slide has exactly one message, repeated
-in the band.
+message, the subtitle carries the explanation. Each content slide has exactly one message, stated
+in the title; no takeaway band repeats it.
 
 Discovery deck (8 to 12 slides, storyline in `references/customer-decks.md`): title with customer
 logo, agenda, goal of the meeting, company snapshot (verified facts as KPI tiles and icon tiles), pain
@@ -425,7 +429,7 @@ Gantt, roles with gradient card vs. gradient panel, open points as icon tiles), 
 ## QA checklist (look at every rendered slide, then tick these)
 
 - Titles all at the same position and size, none wrapped to two lines, none under the tracker.
-- No text leaves its box or its white inner panel; no card, band or table crosses `BOTTOM`; margins
+- No text leaves its box or its white inner panel; no card or table crosses `BOTTOM`; margins
   identical on every slide.
 - Every icon is a Fortinet library icon, means what the label says, sits in a white badge on
   gradients, is not pixelated or stretched (always square, 512 px source).
@@ -433,15 +437,15 @@ Gantt, roles with gradient card vs. gradient panel, open points as icon tiles), 
   no grey borders left on white cards; no LIGHT fills.
 - Accent order, colour semantics and step colours consistent across slides; nothing off-palette
   (`lint` says so).
-- One message per slide, stated in the band; notes present; no sources, footnotes or guide
-  references on slides or in notes unless asked; no em dashes, no middle dots, no customer names
+- One message per slide, stated in the title; no takeaway band or catch-line bar; notes present;
+  no sources, footnotes or guide references on slides or in notes unless asked; no em dashes, no middle dots, no customer names
   unless given, no prices unless asked, British spelling in English and Swiss orthography in German.
 - Title slide: presenter line `Vorname Name - Systems Engineer` with the real name; customer decks
   show the customer's real, current logo top right, sharp and undistorted, on its plate.
 - Discovery decks: pain points are evidence-based, labelled as hypotheses, free of sensitive findings;
   company facts carry their year; the research brief with sources is in the chat reply.
 - Option slides: exactly one recommended option, the others marked OPTIONAL, facts rows aligned, the
-  band names the recommendation and why; no prices unless asked.
+  subtitle names the recommendation and why; no prices unless asked.
 - `validate.py --original <template>` passes; the file opens without a repair prompt.
 
 ## Editing a house-style deck the user has changed by hand
@@ -856,12 +860,6 @@ class FortiDeck:
         self.text(slide, x + 164592, y + 36576, w - 210312, h - 73152,
                   [[(title, {"size": 11.5, "bold": True})], [(body, {"size": 9.5, "color": BODY_GREY})]], anchor="ctr")
 
-    def band(self, slide, y, paras, h=658368, dark=True, size=13, x=LEFT, w=CONTENT_W, align="ctr"):
-        """Full-width takeaway band. Coloured runs on the dark band use ON_DARK tints."""
-        sh = self.rounded(slide, x, y, w, h, INK if dark else WHITE, None if dark else SILVER, R_CHIP)
-        self.shape_text(sh, paras, size=size, color=WHITE if dark else BLACK, bold=False, align=align)
-        return sh
-
     def chip(self, slide, x, y, w, h, text, fill, color=None, bold=True, size=9, radius=R_CELL, line=None):
         sh = self.rounded(slide, x, y, w, h, fill, line, radius)
         self.shape_text(sh, text, size=size, color=color or WHITE, bold=bold, insets=(54864, INS_Y))
@@ -1012,6 +1010,12 @@ def lint(pptx_path, sources_ok=False, customer=False):
             out.append("slide 1: customer deck without the customer logo top right on the title slide")
         if "Option Optional" in names and names.count("Option Recommended") != 1:
             out.append(f"slide {i}: option slide needs exactly one recommended option")
+        for sh in s.shapes:                                       # takeaway band / catch-line bar
+            if sh.shape_type == 1 and sh.has_text_frame and sh.text_frame.text.strip() \
+                    and sh.width >= CONTENT_W * 0.85 and sh.height <= 822960:
+                fills = {c.get("val").upper() for c in sh._element.find(qn("p:spPr")).iter(qn("a:srgbClr"))}
+                if fills & {INK, "3A3A3A"}:
+                    out.append(f"slide {i}: '{sh.name}' looks like a takeaway band, remove it (message goes in the title)")
         for sh in s.shapes:
             if sh.is_placeholder and sh.placeholder_format.type is not None and "TITLE" in str(sh.placeholder_format.type):
                 if sh._element.find(qn("p:spPr")).find(qn("a:xfrm")) is not None:
@@ -1046,7 +1050,7 @@ def lint(pptx_path, sources_ok=False, customer=False):
 ## Helper library, part 2 (write this block to ftnt_modern.py)
 
 The modern layer: `grad`, `shadow`, `DARK`, `LIGHT_END` and `ModernDeck` (gradient `rounded`,
-`header_card` with badge and inner panel, `badge`, `wbadge`, `gbox`, dark pill `band`, blue table
+`header_card` with badge and inner panel, `badge`, `wbadge`, `gbox`, blue table
 headers, gradient chevrons and tracker, `option_cards` and `option_split` for options with a
 recommendation). Always build with `ModernDeck`.
 
@@ -1229,18 +1233,6 @@ class ModernDeck(FortiDeck):
         grad(bar, color, DARK[color], 5400000)
         self.text(slide, x + 182880, y + 36576, w - 228600, h - 73152,
                   [[(title, {"size": 11.5, "bold": True})], [(body, {"size": 9.5, "color": BODY_GREY})]], anchor="ctr")
-
-    def band(self, slide, y, paras, h=658368, dark=True, size=13, x=LEFT, w=CONTENT_W, align="ctr"):
-        if dark:
-            sh = super().rounded(slide, x, y, w, h, INK, None, h // 2)
-            grad(sh, INK_TOP, INK, 0)
-            shadow(sh, blur=203200, dist=63500, alpha=25000)
-        else:
-            sh = super().rounded(slide, x, y, w, h, WHITE, None, h // 2)
-            shadow(sh, blur=203200, dist=63500, alpha=18000)
-        self.shape_text(sh, paras, size=size, color=WHITE if dark else BLACK, bold=False, align=align,
-                        insets=(274320, 0))
-        return sh
 
     def chip(self, slide, x, y, w, h, text, fill, color=None, bold=True, size=9, radius=R_CELL, line=None):
         sh = self.rounded(slide, x, y, w, h, fill, line, radius, shade=False)
@@ -1447,8 +1439,8 @@ d.title_slide("Secure SD-WAN and SASE", "Solution proposal and PoC approach, Mon
 d.agenda(["Starting point", "Options", "Target architecture", "PoC approach", "Next steps"])
 
 # 0 options with one recommendation, all on one page
-s, top = d.content("Three options, one recommendation")
-d.option_cards(s, top + I(0.2), I(3.85), [
+s, top = d.content("Three options, one recommendation", "Recommendation option A: one design, hubs next to the workloads")
+d.option_cards(s, top + I(0.2), I(4.25), [
     dict(kicker="OPTION A", title="SD-WAN with cloud hubs", sub="Hubs in Azure, close to the workloads",
          icon="Secure-SD-WAN", bullets=["FortiGate at every site, zero touch", "Two FortiGate-VM per hub",
                                         "FortiManager and FortiAnalyzer"],
@@ -1460,23 +1452,19 @@ d.option_cards(s, top + I(0.2), I(3.85), [
          bullets=["Same design as option A", "Operations and monitoring by the partner"],
          facts=[("Sites", "20"), ("Operations", "Partner"), ("Effort", "Low")])],
     recommended=0, labels=("RECOMMENDED", "OPTIONAL"))
-d.band(s, top + I(4.3), [[("Recommendation option A: ", {"bold": True, "color": ON_DARK[RED]}),
-                         ("one design, hubs next to the workloads.", {"bold": True})]], h=I(0.62))
 d.notes(s, "Option A is recommended because most workloads already run in Azure. Option B is cheaper to "
            "operate if the data centre stays; option C fits if no in-house team is planned.")
 
 d.section("Target architecture", "SD-WAN hubs in the cloud, SASE for remote users", variant=2)
 
 # 1 gradient header cards with icon badges and white inner panels
-s, top = d.content("Four design principles")
+s, top = d.content("Four design principles", "One building block, one policy, one management, from the plant to the home office")
 for (x, w), (hdr, c, ic, q, items) in zip(cols(4), [
         ("One site building block", RED, "Secure-SD-WAN", "Every site, one design", ["FortiGate at every site", "Zero touch provisioning"]),
         ("Hubs close to the cloud", BLUE, "Azure-vWAN", "Close to the workloads", ["FortiGate-VM in the vWAN hub", "Two instances per hub"]),
         ("Security follows the user", PURPLE, "FortiSASE Cloud", "Office, home, on the road", ["FortiSASE for remote users", "Private access via the hubs"]),
         ("One management", TEAL, "FortiManager", "One cockpit", ["FortiManager and FortiAnalyzer", "FortiAI for operations"])]):
-    d.header_card(s, x, top + I(0.05), w, I(3.85), hdr, c, body=items, icon=ic, icon_size=I(0.9), question=q, bullet_size=11.5)
-d.band(s, top + I(4.15), [[("One building block, one policy, one management: ", {"bold": True}),
-                          ("from the plant to the home office.", {"bold": True, "color": ON_DARK[RED]})]], h=I(0.72), size=14)
+    d.header_card(s, x, top + I(0.05), w, I(4.4), hdr, c, body=items, icon=ic, icon_size=I(0.9), question=q, bullet_size=11.5)
 d.notes(s, "Four principles behind the design.")
 
 # 2 architecture building blocks: tinted zone panel, gradient boxes with white badges, lines first
@@ -1506,16 +1494,15 @@ yy = d.chip_table(s, top + I(0.05), [("Building block", 1.4), ("Component", 2.1)
 d.notes(s, "Scope without prices.")
 
 # 4 PoC: tracker, numbered cards with badges, accent tiles
-s, top = d.content("Three PoC tracks")
+s, top = d.content("Three PoC tracks", "Fortinet supports the PoC actively")
 d.tracker(s, STEPS, active=None, label="PoC")
 for (x, w), (n, k, t, ic, b, c) in zip(cols(3), [(1, "TRACK", "SD-WAN PoC", "Secure-SD-WAN", "Pilot sites with loan units.", RED),
                                                  (2, "TRACK", "SASE PoC", "FortiSASE Cloud", "Test users with FortiClient.", PURPLE),
                                                  (3, "SEPARATE", "Optional PoC", "Partnerships", "Scoped separately.", YELLOW)]):
-    d.numbered_card(s, x, top + I(0.1), w, I(2.85), n, k, t, b, c, icon=ic, icon_size=I(0.7))
+    d.numbered_card(s, x, top + I(0.1), w, I(2.95), n, k, t, b, c, icon=ic, icon_size=I(0.75))
 for (x, w), (t, b) in zip(cols(4), [("2 months", "Kick-off to decision."), ("Pilot sites", "Selected sites only."),
                                     ("Loan hardware", "Returned after the PoC."), ("Criteria first", "No start without them.")]):
-    d.accent_tile(s, x, top + I(3.15), w, I(0.95), t, b, RED)
-d.band(s, top + I(4.3), [[("Fortinet supports the PoC actively.", {"bold": True})]], h=I(0.62))
+    d.accent_tile(s, x, top + I(3.3), w, I(1.1), t, b, RED)
 d.notes(s, "PoC tracks.")
 d.closing()
 d.save("example.pptx")
